@@ -1,0 +1,191 @@
+#!/bin/bash
+
+# Revisamos si ya corrio el archivo de configuracion
+#echo FMRILAB_CONFIGFILE_RAN  vale $FMRILAB_CONFIGFILE_RAN 
+if [ ! -z $FMRILAB_CONFIGFILE_RAN ]
+then
+  echo ""
+  #return 1
+fi
+
+
+logo=/home/inb/lconcha/fmrilab_software/fmrilab_logo.txt
+cat $logo
+
+# nos aseguramos que tenemos SGE_ROOT para poder usar gridengine
+# (si no existe, fsl_sub no usa gridengine)
+if [ -d /var/lib/gridengine ]
+then
+ export SGE_ROOT=/var/lib/gridengine
+else
+  echo " [AGUAS] gridengine mal configurado, no existe /var/lib/gridengine"
+fi
+
+
+
+# Configuramos fsl (version 4 es el default, para usar la 5 ver abajo)
+export FSLDIR=/home/inb/lconcha/fmrilab_software/fsl_4.1.9
+. ${FSLDIR}/etc/fslconf/fsl.sh
+export FSLPARALLEL=1
+# force fslview to use version 4
+alias fslview=/usr/bin/fslview
+export FSL4_SETUP_FILE=/home/inb/lconcha/fmrilab_software/tools/setup_fsl4
+alias fsl4="source $FSL4_SETUP_FILE"
+
+## Si queremos fsl version 5 tenemos que invocarlo manualmente, preparemos un alias.
+export FSL5_SETUP_FILE=/home/inb/lconcha/fmrilab_software/tools/setup_fsl5
+export FSL509_SETUP_FILE=/home/inb/lconcha/fmrilab_software/tools/setup_fsl509
+alias fsl5="source $FSL5_SETUP_FILE"
+alias fsl509="source $FSL509_SETUP_FILE"
+alias fsl511='source /home/inb/lconcha/fmrilab_software/tools/setup_fsl511'
+
+
+# Configuramos freesurfer
+FS_FREESURFERENV_NO_OUTPUT=1
+#export FREESURFER_HOME=/usr/local/freesurfer
+export FREESURFER_HOME=/home/inb/lconcha/fmrilab_software/freesurfer_5.3
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
+
+#  Configuramos otras herramientas
+export PATH=${PATH}:/home/inb/lconcha/fmrilab_software/tools:/home/inb/lconcha/fmrilab_software/tools/private
+
+# mrtrix
+if [ "`uname -n`" == "shaftoe" -o "`uname -n`" == "aragorn" ]
+then
+  export mrtrixDir=/home/inb/lconcha/fmrilab_software/mrtrix-AMD
+else
+  #export mrtrixDir=/home/inb/lconcha/fmrilab_software/mrtrix
+  export mrtrixDir=/home/inb/lconcha/fmrilab_software/mrtrix-0.2.12
+fi
+export PATH=${mrtrixDir}/bin:${PATH}
+export LD_LIBRARY_PATH=${mrtrixDir}/lib::${LD_LIBRARY_PATH}
+alias mrtrix3='source /home/inb/lconcha/fmrilab_software/tools/setup_mrtrix3.sh'
+alias mrtrix3_git='source /home/inb/lconcha/fmrilab_software/tools/setup_mrtrix3_git.sh'
+
+
+
+
+# Camino
+caminoDir=/home/inb/lconcha/fmrilab_software/camino
+export MANPATH=${caminoDir}/man:$MANPATH
+export PATH=${caminoDir}/bin:$PATH
+
+
+# Set up ANTS
+#export ANTSPATH=/usr/lib/ants/
+#export PATH=${ANTSPATH}:${PATH}
+
+# Agregamos el path de las librerias de Medinria
+
+#export MEDINRIAPTH=/home/inb/lconcha/fmrilab_software/medinria/medInria/build/lib/lib:/home/inb/lconcha/fmrilab_software/medinria/dtk/build/lib:/home/inb/lconcha/fmrilab_software/medinria/medInria/build/lib:/home/inb/lconcha/fmrilab_software/medinria/medInria/build/plugins
+
+#Las librerias de medinria y trackvis colisionan y no permiten la ejecución de medinria
+#Por eso las anexe al alias que las inicia.
+#export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${MEDINRIAPATH}
+
+
+#alias medinria="export MEDINRIA_PLUGIN_PATH=/home/inb/lconcha/fmrilab_software/medinria/medInria/build/plugins && export LD_LIBRARY_PATH=${mrtrixDir}/lib:${MEDINRIAPATH} && /home/inb/lconcha/fmrilab_software/medinria/./medInria.sh"
+
+alias medinria="export LD_LIBRARY_PATH=/home/inb/lconcha/fmrilab_software/myMatlab/bin/glnxa64 && /home/inb/lconcha/fmrilab_software/medinria1.9/./MedINRIA"
+
+#Agrgamos la librería de matlab y los alias para trackvis y difussion
+export DTKPATH=/home/inb/lconcha/fmrilab_software/myMatlab/bin/glnxa64
+
+alias dtk="export LD_LIBRARY_PATH=${mrtrixDir}/lib:${DTKPATH} && /home/inb/lconcha/fmrilab_software/dtk/./dtk"
+alias trackvis="export LD_LIBRARY_PATH=${mrtrixDir}/lib:${DTKPATH} &&/home/inb/lconcha/fmrilab_software/dtk/./trackvis"
+
+#IDL se instalan las variables generadas por install
+
+ITT_DIR=/home/inb/lconcha/fmrilab_software/idl
+#ITT_DIR=/home/inb/lconcha/fmrilab_software/TORTOISE_V1.4.0/idl81
+IDL_DIR=/home/inb/lconcha/fmrilab_software/idl/idl706
+#IDL_DIR=/home/inb/lconcha/fmrilab_software/TORTOISE_V1.4.0/idl81
+export IDL_DIR ITT_DIR
+alias ittlicense=$IDL_DIR/bin/ittlicense
+alias idl=$IDL_DIR/bin/idl
+alias idlde=$IDL_DIR/bin/idlde
+alias idlhelp=$IDL_DIR/bin/idlhelp
+alias idlman=$IDL_DIR/bin/idlman
+alias idlrpc=$IDL_DIR/bin/idlrpc
+alias idldemo=$IDL_DIR/bin/idldemo
+
+#Alias de matlab
+alias matlab=/home/inb/lconcha/fmrilab_software/MATLAB/R2013a/bin/matlab
+alias matlab08=/home/inb/lconcha/fmrilab_software/myMatlab/bin/matlab
+alias matlab11=/usr/local/MATLAB/R2011b/bin/matlab
+alias matlab13alt=/home/inb/lconcha/fmrilab_software/tools/fmrilab_matlab.sh
+alias matlab16alt=/home/inb/lconcha/fmrilab_software/tools/fmrilab_matlab16.sh
+alias matlab18alt=/home/inb/soporte/fmrilab_software/MatlabR2018a/bin/matlab
+
+# Paraview
+#export PATH=${PATH}:/home/inb/lconcha/fmrilab_software/ParaView-4.1.0-Linux-64bit/bin
+export PATH=${PATH}:/home/inb/lconcha/fmrilab_software/ParaView-5/bin
+
+
+# dcm2niix es parte de mricro_gl
+export PATH=${PATH}:/home/inb/lconcha/fmrilab_software/mricrogl_lx
+
+
+
+# ALIAS
+alias scpresume="rsync -avz --partial --progress --rsh=ssh"
+alias slicer=/home/inb/lconcha/fmrilab_software/Slicer-4.2.2-1-linux-amd64/./Slicer
+alias itksnap=/home/inb/lconcha/fmrilab_software/itksnap-3.2.0-20141023-Linux-x86_64/bin/itksnap
+
+# Avisos
+echo "Hola `whoami`. Bienvenido a `uname -n`."
+echo "Para cambiar el password, contacta al administrador del sistema"
+echo "Recuerda que para permitir el acceso a tus datos es necesario"
+echo "que estos esten disponibles en la carpeta /misc/ y el nombre"
+echo "de la maquina que te corresponde"
+echo ""
+#echo "Recuerda que los defaults son fsl4, mrtrix2 y freesurfer5.3"
+echo "Para mas información visita la wiki"
+printf '\e[1;31m%-6s\e[m' "https://c13inb.github.io/"
+echo -e "\n"
+
+
+# Una bandera para avisar que este archivo ya corrio
+# La intencion es que /etc/profile lo corre system-wide, y luego cada usuario,
+# pero para que correrlo dos veces?
+export FMRILAB_CONFIGFILE_RAN=1
+
+
+
+### Zibamira temporal para LATP 2015
+alias zib=/misc/mansfield/lconcha/TMP/ZIBAmira-2015.34/bin/zibamira
+
+
+# alias ZibAmira para todos
+alias zibamira='/misc/mansfield/lconcha/software/ZIBAmira-2014.37/bin/start'
+
+
+## AFNI PATH
+
+export PATH=$PATH:/home/inb/lconcha/fmrilab_software/afni
+export DYLD_FALLBACK_LIBRARY_PATH=/home/inb/lconcha/fmrilab_software/afni
+
+## C3D
+
+export PATH=/home/inb/lconcha/fmrilab_software/C3D/bin:$PATH
+
+## Miniconda
+
+export PATH=/home/inb/lconcha/fmrilab_software/miniconda2/bin:$PATH
+
+## ANTS
+
+#export ANTSPATH=/home/inb/lconcha/fmrilab_software/ANTs/bin 
+export ANTSPATH=/home/inb/lconcha/fmrilab_software/antsbin/bin
+export PATH=${ANTSPATH}:$PATH
+
+## OpenMPI
+
+export PATH="$PATH:/opt/OpenMPI/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/OpenMPI/lib"
+export MPI_ROOT="/opt/OpenMPI"
+
+## minc tools
+mincpath=/home/inb/lconcha/fmrilab_software/minc
+export PATH=${mincpath}/bin:${PATH}
+

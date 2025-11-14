@@ -20,3 +20,5 @@ Contents
 
    usage
    api
+   configs-master/SGE_in_ubuntu22-04
+

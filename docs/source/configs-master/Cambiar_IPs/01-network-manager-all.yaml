@@ -1,0 +1,12 @@
+# Let NetworkManager manage all devices on this system
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp0s25:
+      dhcp4: no
+      addresses: [MODIFICA]
+      gateway4: 172.24.220.254
+      nameservers:
+          addresses: [132.248.10.2, 132.248.204.1, 208.67.222.222]
+

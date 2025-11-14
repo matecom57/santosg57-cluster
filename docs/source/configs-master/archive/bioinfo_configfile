@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Revisamos si ya corrio el archivo de configuracion
+#echo FMRILAB_CONFIGFILE_RAN  vale $FMRILAB_CONFIGFILE_RAN 
+if [ ! -z $BIOINFO_CONFIGFILE_RAN ]
+then
+  echo ""
+  #return 1
+fi
+
+
+
+# ALIAS
+alias scpresume="rsync -avz --partial --progress --rsh=ssh"
+
+# Para instalarlo en una carpeta centralizada es necesario especificar 
+# la carpeta:
+# python setup.py install --prefix=/datos/mendel/bioinfo/HTSeq
+# Y luego declarar el path donde se encuentran los paquetes
+
+export PYTHONPATH=/datos/mendel/bioinfo/HTSeq/bin:/datos/mendel/bioinfo/HTSeq/lib/python2.7/site-packages
+
+#Variables bowtie y bowtie2
+
+export BT2_HOME=/datos/mendel/bioinfo/bowtie2/
+
+export PATH=$PATH:/datos/mendel/bioinfo/bowtie:/datos/mendel/bioinfo/bowtie2:/datos/mendel/bioinfo/bedtools/bin:/datos/mendel/bioinfo/cufflinks:/datos/mendel/bioinfo/samtools:/datos/mendel/bioinfo/samtools/bcftools:/datos/mendel/bioinfo/samtools/misc:/datos/mendel/bioinfo/tophat:/datos/mendel/bioinfo/blat
+
+
+# Avisos
+echo "Hola `whoami`. Bienvenido a `uname -n`."
+echo "Para cambiar el password, ejecuta el comando yppasswd"
+echo "Recuerda que para tener accesibles los datos en el cluster,"
+echo "estos deben colocarse en la carpeta /datos/ y el nombre de la"
+echo "maquina que te fue asignada"
+echo "Para mas información visita el wiki"
+printf '\e[1;31m%-6s\e[m' "http://talairach/dokuwiki/"
+echo -e "\n"
+
+
+# Una bandera para avisar que este archivo ya corrio
+# La intencion es que /etc/profile lo corre system-wide, y luego cada usuario,
+# pero para que correrlo dos veces?
+export BIOINFO_CONFIGFILE_RAN=1

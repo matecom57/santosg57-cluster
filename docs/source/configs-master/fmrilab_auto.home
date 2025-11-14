@@ -1,0 +1,12 @@
+# This auto.misc file comes from a central location
+# created by Leopoldo and lconcha 
+# master file is /home/inb/lconcha/fmrilab_auto.misc
+#
+# This is an automounter map and it has the following format
+# key [ -mount-options-separated-by-comma ] location
+# Details may be found in the autofs(5) manpage
+
+
+
+inb	-rw,fsc,sync,soft,intr,proto=tcp,rsize=8192,wsize=8192 tesla:/home/inb
+

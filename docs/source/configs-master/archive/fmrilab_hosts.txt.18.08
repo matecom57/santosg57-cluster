@@ -1,0 +1,54 @@
+172.24.60.129   mountcastle.inb.unam.mx mountcastle
+172.24.60.157   evarts.inb.unam.mx      evarts
+172.24.80.37    neurona.inb.unam.mx     neurona
+172.24.80.69    leviathan.inb.unam.mx   leviathan
+172.24.80.70    jasper.inb.unam.mx      jasper
+172.24.80.71    shaftoe.inb.unam.mx     shaftoe
+172.24.80.73    cannabis.inb.unam.mx    cannabis
+172.24.80.74    claustrum.inb.unam.mx   claustrum
+172.24.80.75    fermat.inb.unam.mx      fermat
+172.24.80.76    bongo.inb.unam.mx       bongo
+172.24.80.77    arwen.inb.unam.mx       arwen
+172.24.80.79    charcot.inb.unam.mx     charcot
+172.24.80.81    euler.inb.unam.mx       euler
+172.24.80.82    geminis.inb.unam.mx     geminis
+172.24.80.83    drobo01.inb.unam.mx     drobo01
+172.24.80.84    drobo02.inb.unam.mx     drobo02
+172.24.80.89    temporal.inb.unam.mx    temporal
+172.24.80.90    tournoux.inb.unam.mx    tournoux
+172.24.80.97    fourier.inb.unam.mx     fourier
+172.24.80.98    rabi.inb.unam.mx        rabi
+172.24.80.99    penfield.inb.unam.mx    penfield
+#172.24.80.100   talairach.inb.unam.mx   talairach
+172.24.80.101   tanner.inb.unam.mx      tanner
+172.24.80.102   tesla.inb.unam.mx       tesla
+172.24.80.103   tezca.inb.unam.mx       tezca
+172.24.80.104   sesamo.inb.unam.mx      sesamo
+172.24.80.105   rhesus.inb.unam.mx      rhesus
+172.24.80.106   mansfield.inb.unam.mx   mansfield
+172.24.80.107   purcell.inb.unam.mx     purcell
+172.24.80.108   bloch.inb.unam.mx       bloch
+172.24.80.109   hahn.inb.unam.mx        hahn
+172.24.80.110   carr.inb.unam.mx        carr
+172.24.80.111   sherrington.inb.unam.mx sherrington
+#172.24.80.112   torrey.inb.unam.mx      torrey
+172.24.80.113   ernst.inb.unam.mx       ernst
+172.24.80.114	nyquist.inb.unam.mx	nyquist
+172.24.90.154   mendel.inb.unam.mx      mendel
+172.24.100.47   copula.inb.unam.mx      copula
+172.24.100.49   copula2.inb.unam.mx     copula2
+172.24.100.73   giora.inb.unam.mx       giora
+172.24.100.74   austin.inb.unam.mx      austin
+172.24.100.143  ridelim.inb.unam.mx     ridelim
+172.24.140.49   sesamo8.inb.unam.mx     sesamo8
+192.168.192.154 lauterbur.inb.unam.mx   lauterbur
+172.24.140.48   bruker_console
+172.24.140.50	bruker7
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+

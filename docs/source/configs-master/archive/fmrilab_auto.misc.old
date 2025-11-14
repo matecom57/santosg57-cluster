@@ -1,0 +1,68 @@
+# This auto.misc file comes from a central location
+# created by Leopoldo and lconcha 
+# master file is /home/inb/lconcha/fmrilab_auto.misc
+## This is an automounter map and it has the following format
+# key [ -mount-options-separated-by-comma ] location
+# Details may be found in the autofs(5) manpage
+
+
+# the following entries are samples to pique your imagination
+#linux		-ro,soft,intr		ftp.example.org:/pub/linux
+#boot		-fstype=ext2		:/dev/hda1
+#floppy		-fstype=auto		:/dev/fd0
+#floppy		-fstype=ext2		:/dev/fd0
+#e2floppy	-fstype=ext2		:/dev/fd0
+#jaz		-fstype=ext2		:/dev/sdc1
+#removable	-fstype=ext2		:/dev/hdd
+
+
+arwen -rw,soft,intr,rsize=8192,wsize=8192 arwen:/datos/arwen
+austin -rw,soft,intr,rsize=8192,wsize=8192 austin:/datos/austin
+#bloch -rw,soft,intr,rsize=8192,wsize=8192 bloch:/datos/bloch
+brown -rw,soft,intr,rsize=8192,wsize=8192 brown:/datos/brown
+cannabis  -rw,soft,intr,rsize=8192,wsize=8192 cannabis:/datos/cannabis
+claustrum -rw,soft,intr,rsize=8192,wsize=8192 claustrum:/datos/claustrum
+carr -rw,soft,intr,rsize=8192,wsize=8192 carr:/datos/carr
+carr2 -rw,soft,intr,rsize=8192,wsize=8192 carr:/datos/carr2
+charcot   -rw,soft,intr,rsize=8192,wsize=8192 charcot:/datos/charcot
+charcot2  -rw,soft,intr,rsize=8192,wsize=8192 charcot:/datos/charcot2
+copula  -rw,soft,intr,rsize=8192,wsize=8192 copula:/datos/copula
+copula2 -rw,soft,intr,rsize=8192,wsize=8192 copula2:/datos/copula2
+euler -rw,soft,intr,rsize=8192,wsize=8192 euler:/datos/euler
+evarts -rw,soft,intr,rsize=8192,wsize=8192 evarts:/datos/evarts
+evarts2 -rw,soft,intr,rsize=8192,wsize=8192 evarts:/datos/evarts2
+fourier -rw,soft,intr,rsize=8192,wsize=8192 fourier:/datos/fourier
+fourier2 -rw,soft,intr,rsize=8192,wsize=8192 fourier:/datos/fourier2
+geminis  -rw,soft,intr,rsize=8192,wsize=8192 geminis:/datos/geminis
+giora    -rw,soft,intr,rsize=8192,wsize=8192 giora:/datos/giora
+giora2   -rw,soft,intr,rsize=8192,wsize=8192 giora:/datos/giora2
+hahn -rw,soft,intr,rsize=8192,wsize=8192 hahn:/datos/hahn
+#hahn2 -rw,soft,intr,rsize=8192,wsize=8192 hahn:/datos/hahn2
+jasper -rw,soft,intr,rsize=8192,wsize=8192 jasper:/datos/jasper
+mansfield -rw,soft,intr,rsize=8192,wsize=8192 mansfield:/datos/mansfield
+milagros  -rw,soft,intr,rsize=8192,wsize=8192 milagros:/datos/milagros
+mountcastle -rw,soft,intr,rsize=8192,wsize=8192 mountcastle:/datos/mountcastle
+nyquist -rw,soft,intr,rsize=8192,wsize=8192 nyquist:/datos/nyquist
+penfield -rw,soft,intr,rsize=8192,wsize=8192 penfield:/datos/penfield
+purcell -rw,soft,intr,rsize=8192,wsize=8192 purcell:/datos/purcell
+rabi    -rw,soft,intr,rsize=8192,wsize=8192 rabi:/datos/rabi
+ridelim -rw,soft,intr,rsize=8192,wsize=8192 ridelim:/datos/ridelim
+ernst -rw,soft,intr,rsize=8192,wsize=8192 ernst:/datos/ernst
+ernst2 -rw,soft,intr,rsize=8192,wsize=8192 ernst:/datos/ernst2
+rhesus -rw,soft,intr,rsize=8192,wsize=8192 rhesus:/datos/rhesus
+sherrington -rw,soft,intr,rsize=8192,wsize=8192 sherrington:/datos/sherrington
+sherrington2 -rw,soft,intr,rsize=8192,wsize=8192 sherrington:/datos/sherrington2
+tanner  -rw,soft,intr,rsize=8192,wsize=8192 tanner:/datos/tanner
+tanner2 -rw,soft,intr,rsize=8192,wsize=8192 tanner:/datos/tanner2
+tezca   -rw,soft,intr,rsize=8192,wsize=8192 tezca:/datos/tezca
+tezca2   -rw,soft,intr,rsize=8192,wsize=8192 tezca:/datos/tezca2
+tournoux  -rw,soft,intr,rsize=8192,wsize=8192 tournoux:/datos/tournoux
+
+drobo02 -rw,soft,intr,rsize=8192,wsize=8192 drobo02:/mnt/DroboFS/Shares/Scratch
+
+bruker_pvDatasets2 -rw,soft,intr,rsize=8192,wsize=8192  bruker_console:/mnt/pvDatasets2
+bruker_pvDatasets3 -rw,soft,intr,rsize=8192,wsize=8192  bruker_console:/mnt/pvDatasets3
+bruker7 -rw,soft,intr,rsize=8192,wsize=8192  bruker7:/mnt
+
+sesamo -ro,soft	sesamo:/volume1/fmrilab
+sesamo8 -ro,soft sesamo8:/volume1/bruker

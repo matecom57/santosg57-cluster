@@ -1,0 +1,76 @@
+# Lab Merchant/B-15
+172.24.60.129   mountcastle.inb.unam.mx mountcastle
+172.24.60.157   evarts.inb.unam.mx      evarts
+#
+# Lab Barrios/C-12
+172.24.220.91   jasper.inb.unam.mx      jasper
+172.24.80.71    shaftoe.inb.unam.mx     shaftoe
+172.24.80.73    cannabis.inb.unam.mx    cannabis
+172.24.220.94   claustrum.inb.unam.mx   claustrum
+172.24.220.95   arwen.inb.unam.mx       arwen
+172.24.220.96   charcot.inb.unam.mx     charcot
+172.24.220.97   euler.inb.unam.mx       euler
+172.24.220.98   geminis.inb.unam.mx     geminis
+172.24.80.83    drobo01.inb.unam.mx     drobo01
+172.24.80.84    drobo02.inb.unam.mx     drobo02
+172.24.220.101  tournoux.inb.unam.mx    tournoux
+172.24.220.102  moca.inb.unam.mx        moca
+172.24.80.85                            synology-labc12
+#
+# Lab Concha/C13
+172.24.80.97    fourier.inb.unam.mx     fourier
+172.24.80.98    rabi.inb.unam.mx        rabi
+172.24.80.99    penfield.inb.unam.mx    penfield
+172.24.80.100   lauterbur.inb.unam.mx	lauterbur
+172.24.80.101   tanner.inb.unam.mx      tanner
+172.24.80.102   tesla.inb.unam.mx       tesla
+172.24.80.104   sesamo.inb.unam.mx      sesamo
+172.24.80.105   rhesus.inb.unam.mx      rhesus
+172.24.80.106   mansfield.inb.unam.mx   mansfield
+172.24.80.108   bloch.inb.unam.mx       bloch
+172.24.80.109   hahn.inb.unam.mx        hahn
+172.24.80.110   carr.inb.unam.mx        carr
+172.24.80.111   sherrington.inb.unam.mx sherrington
+172.24.80.112   damadian.inb.unam.mx 	damadian
+172.24.80.113   ernst.inb.unam.mx       ernst
+172.24.80.114	nyquist.inb.unam.mx	nyquist
+172.24.80.115   brown.inb.unam.mx	brown
+172.24.80.117   larmor.inb.unam.mx	larmor
+
+#
+# Lab Paredes/D-11
+172.24.100.47   copula.inb.unam.mx      copula
+172.24.100.49   copula2.inb.unam.mx     copula2
+#
+# Lab Garza/D-12
+172.24.100.73   giora.inb.unam.mx       giora
+172.24.100.74   austin.inb.unam.mx      austin
+172.24.100.79	tezca.inb.unam.mx	    tezca
+172.24.100.69                           zinana
+
+#
+# Lab Abraham-Arellano/D-14
+172.24.220.173  ridelim.inb.unam.mx     ridelim
+#
+# Lab Flor/C-14
+172.24.80.131   milagros.inb.unam.mx    milagros
+#
+# URRA
+172.24.140.42   purcell.inb.unam.mx     purcell
+172.24.140.48   bruker_console
+172.24.140.49   sesamo8.inb.unam.mx     sesamo8
+172.24.140.50	bruker7
+# URM
+192.168.192.200        ogawa.inb.unam.mx       ogawa
+
+# Lab ENES Guadalupe_Gomar
+172.24.220.202  opuntia.enesjuriquilla.unam.mx  opuntia
+172.24.220.201  echinopsis.enesjuriquilla.unam.mx echinopsis
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
