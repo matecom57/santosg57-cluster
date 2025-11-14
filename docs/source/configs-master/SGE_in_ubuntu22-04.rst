@@ -68,36 +68,45 @@ And _fuck_: at the end the service did not start. It seems to be looking for the
 
 Finally, prepare and configure `hahn` as submit host
 
-    source /opt/sge/fmrilab/common/settings.sh
-    qconf -as hahn
+.. code:: Bash
+
+   source /opt/sge/fmrilab/common/settings.sh
+   qconf -as hahn
 
 
 :information_source: For each client to install, we need to set it up as an administrative host within the server. So you may be coming back to this section every time you are configuring a new client. It's simle, suppose your exec client is `mansfield`, so as `root` in the server `hahn`, we do:
 
-    qconf -ah mansfield
+.. code:: Bash
+
+   qconf -ah mansfield
 
 
-## Configuring clients (as `root`)
+Configuring clients (as ``root``)
+-------------------------------
+
+:warning: (don't forget to use ``qconf -ah CLIENTNAME`` in the server before you go any further.)
+
+Create the ``sge`` user. Use the script ``/home/inb/soporte/configs/fmrilab_configure_SGE_step01.sh``
 
 
-:warning: (don't forget to use `qconf -ah CLIENTNAME` in the server before you go any further.)
+I was able to copy the ``/opt/sge`` directory from another fully configured exec client, and need not compile again. So, do this:
 
-Create the `sge` user. Use the script `/home/inb/soporte/configs/fmrilab_configure_SGE_step01.sh`
-
-
-I was able to copy the `/opt/sge` directory from another fully configured exec client, and need not compile again. So, do this:
+.. code:: Bash
 
     scp -rp soporte@mansfield:/opt/sge /opt/sge
 
-Now, back to `/opt/sge`...
+Now, back to ``/opt/sge``...
+
+.. code:: Bash
 
     chown -R sge /opt/sge/fmrilab
     ./install_execd
 
-:warning: Be careful when entering the cell name, it's **`fmrilab`**. Don't be a fool.
+:warning: Be careful when entering the cell name, it's **``fmrilab``**. Don't be a fool.
 
 
-Again, the service did not start automatically because the file `/etc/systemd/system/sgeexecd.service` points to the `default` instead of `fmrilab` cell name. A simple `sed` fixes it, and it is now reflected in `fmrilab_configure_SGE_step02.sh`.
+Again, the service did not start automatically because the file ``/etc/systemd/system/sgeexecd.service`` points to the ``default`` instead of ``fmrilab`` 
+cell name. A simple ``sed`` fixes it, and it is now reflected in ``fmrilab_configure_SGE_step02.sh``.
     
 
 
@@ -106,17 +115,19 @@ Again, the service did not start automatically because the file `/etc/systemd/sy
     
   We create the folders and copy the binaries from the server.
 
-```
-mkdir -p /opt/sge/fmrilab
-chown -R sge /opt/sge/fmrilab
-scp -pr soporte@hahn:/opt/sge /opt/sge
-cd /opt/sge
-```
+.. code:: Bash
+
+   mkdir -p /opt/sge/fmrilab
+   chown -R sge /opt/sge/fmrilab
+   scp -pr soporte@hahn:/opt/sge /opt/sge
+   cd /opt/sge
 
 Configure exec client. I tried running ./install_execd directly, but it complained about not finding the binaries (which were there, by the way). So I compiled it within the client. This is quick.
 
-    cd /home/inb/soporte/sge
-    cmake --install build
+.. code:: Bash
+
+   cd /home/inb/soporte/sge
+   cmake --install build
 
 
 It did complain at the end about some write permissions for soporte's home, but it seems to have done the trick.     
@@ -125,38 +136,44 @@ It did complain at the end about some write permissions for soporte's home, but 
 
 :information_source: Sourcing `/opt/sge/fmrilab/common/settings.sh` changes the user's PATH to point to the binaries we installed, so I will need to add this to each user's profile. Update: I put it in `$FMRILAB_CONFIGFILE`, which every user runs upon login. Nice!
 
-
-
-
 # Configuring queues
 
-This is done in the server `hahn`.
+This is done in the server ``hahn``.
 
-Create a queue with `qconf -aq`, modify an existing one with `conf -mq`.
-```
-sudo su
-source /opt/sge/fmrilab/common/settings.sh
-qconf -aq all.q
-```
+Create a queue with ``qconf -aq``, modify an existing one with ``conf -mq``.
+
+.. code:: Bash
+
+   sudo su
+   source /opt/sge/fmrilab/common/settings.sh
+   qconf -aq all.q
+
 Add the host to the second line, hostlist.
 
 Add the exec client to the hosts group:
-If the host group does not exist, use `qconf -ahgrp @allhosts`. If it already exists, use:
+
+If the host group does not exist, use ``qconf -ahgrp @allhosts``. If it already exists, use:
+
+.. code:: Bash
 
     qconf -mhgrp @allhosts
+
 and add it to the second line.
 
 Add the new host as a submit and exec host:
-```
-qconf -as NEWHOSTNAME
-qconf -ae NEWHOSTNAME
-```
-and change its max number of slots to `nproc-1`:
 
-    qconf -aattr queue slots "[NEWHOSTNAME.inb.unam.mx=7]" all.q
+.. code:: Bash
+
+   qconf -as NEWHOSTNAME
+   qconf -ae NEWHOSTNAME
+
+and change its max number of slots to ``nproc-1``:
+
+.. code:: Bash
+
+   qconf -aattr queue slots "[NEWHOSTNAME.inb.unam.mx=7]" all.q
 
 
-
-After that, `qstat -f` should show it in the list!
+After that, ``qstat -f`` should show it in the list!
 
 ![](https://i.imgur.com/rmeDdWg.png)
