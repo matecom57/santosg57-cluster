@@ -13,34 +13,46 @@ There are some details that are specific to my setup, since I wish to retain som
 * I already took care of `/etc/hosts` on all machines (client and server).
 
 
-## Install the binaries in server (`hahn`)
+Install the binaries in server (`hahn`)
+---------------------------------------
 
 First, install the dependencies:
 
-    apt install git build-essential libhwloc-dev libssl-dev libtirpc-dev libmotif-dev libxext-dev libncurses-dev libdb5.3-dev libpam0g-dev pkgconf libsystemd-dev cmake
+.. code:: Bash
+
+   apt install git build-essential libhwloc-dev libssl-dev libtirpc-dev libmotif-dev libxext-dev libncurses-dev libdb5.3-dev libpam0g-dev pkgconf libsystemd-dev cmake
 
 (they were already installed)
 
 Now, as user `soporte`, clone the forked SGE to its home. This way I can configure/compile/install in the server. 
 
-    git clone https://github.com/daimh/sge.git
+.. code:: Bash
+
+   git clone https://github.com/daimh/sge.git
     
 Enter the cloned folder and build.
 
-    cd /home/inb/soporte/sge
-    cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/opt/sge -DSYSTEMD=ON
-    cmake --build build -j
-    sudo cmake --install build
+.. code:: Bash
+
+   cd /home/inb/soporte/sge
+   cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/opt/sge -DSYSTEMD=ON
+   cmake --build build -j
+   sudo cmake --install build
 
 Create the user `sge` and give it ownership of the binaries
 
-    sudo ../configs/fmrilab_configure_SGE_step01.sh
-    sudo chown -R sge /opt/sge
+.. code:: Bash
+
+   sudo ../configs/fmrilab_configure_SGE_step01.sh
+   sudo chown -R sge /opt/sge
 
 Let's install the master server. As `root`:
 
-    cd /opt/sge
-    ./install_qmaster
+
+.. code:: Bash
+
+   cd /opt/sge
+   ./install_qmaster
     
 Now, within that installer, accept all defaults (ports, communication medium-NIS, etc). Defaults are accepted by pressing ENTER. I counted NINE presses until I got to the one we do need to change, which is where it asks for the `SGE_CELL`. I do not like `default` and will change it to `fmrilab`. Why? Because I have other scripts that still use that variable, so I will not mess with it.
 
