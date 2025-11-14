@@ -84,7 +84,7 @@ Finally, prepare and configure `hahn` as submit host
 Configuring clients (as ``root``)
 -------------------------------
 
-:warning: (don't forget to use ``qconf -ah CLIENTNAME`` in the server before you go any further.)
+.. warning:: (don't forget to use ``qconf -ah CLIENTNAME`` in the server before you go any further.)
 
 Create the ``sge`` user. Use the script ``/home/inb/soporte/configs/fmrilab_configure_SGE_step01.sh``
 
@@ -102,7 +102,7 @@ Now, back to ``/opt/sge``...
     chown -R sge /opt/sge/fmrilab
     ./install_execd
 
-:warning: Be careful when entering the cell name, it's **``fmrilab``**. Don't be a fool.
+.. warning:: Be careful when entering the cell name, it's ``fmrilab``. Don't be a fool.
 
 
 Again, the service did not start automatically because the file ``/etc/systemd/system/sgeexecd.service`` points to the ``default`` instead of ``fmrilab`` 
@@ -134,9 +134,11 @@ It did complain at the end about some write permissions for soporte's home, but 
 </details>details>
     
 
-:information_source: Sourcing `/opt/sge/fmrilab/common/settings.sh` changes the user's PATH to point to the binaries we installed, so I will need to add this to each user's profile. Update: I put it in `$FMRILAB_CONFIGFILE`, which every user runs upon login. Nice!
+:information_source: Sourcing ``/opt/sge/fmrilab/common/settings.sh`` changes the user's PATH to point to the binaries we installed, so I will need to add 
+this to each user's profile. Update: I put it in ``$FMRILAB_CONFIGFILE``, which every user runs upon login. Nice!
 
-# Configuring queues
+Configuring queues
+------------------
 
 This is done in the server ``hahn``.
 
