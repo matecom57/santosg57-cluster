@@ -21,4 +21,5 @@ Contents
    usage
    api
    configs-master/SGE_in_ubuntu22-04
+   Slurm/index_Slurm
 
